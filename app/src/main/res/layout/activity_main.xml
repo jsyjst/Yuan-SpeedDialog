@@ -34,4 +34,11 @@
         android:text="进度框"
         />
 
+    <Button
+        android:id="@+id/dialogInputBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="输入框"
+        />
+
 </LinearLayout>

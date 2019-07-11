@@ -3,18 +3,19 @@ package com.example.yuan_dialog.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
 import com.example.yuan_dialog.R;
+import com.example.yuan_dialog.listener.OnInputDialogButtonClickListener;
+import com.example.yuan_dialog.listener.OnSelectClickListener;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
 import androidx.annotation.NonNull;
@@ -33,16 +34,20 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
 
     private static final String TAG = "SpeedDialog";
 
-    private OnYuanClickListener mSureClickListener;
-    private OnYuanClickListener mCancelClickListener;
+    private OnSelectClickListener mSureClickListener;
+    private OnSelectClickListener mCancelClickListener;
+    private OnInputDialogButtonClickListener mInputDialogSureClickListener;
     private LinearLayout mNormalPanel;
     private LinearLayout mProgressPanel;
+    private LinearLayout mInputPanel;
     private TextView mTitleTv; //标题
     private TextView mMessageTv; //内容
     private TextView mSureBtn; //确定框
     private TextView mCancelBtn;//取消框
     private ProgressWheel mProgressBar;//加载框
     private TextView mProgressTv;//加载描述
+    private EditText mInputEdit;//输入框
+    private View mCancelLine;
     private String mTitleText;
     private String mMessageText;
     private String mCancelText;
@@ -51,16 +56,13 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
     private int mDialogType;
     private int mSureTextColor;
     private int mProgressColor;
+    private boolean mShowMessage;
+    private boolean mShowCancelBtn = true;
 
     public static final int NORMAL_TYPE = 0; //正常中间确认框
     public static final int PROGRESS_TYPE = 1;//加载框
     public static final int INPUT_TYPE = 2; //输入框
-    public static final int BOTTOM_SELECT_TYPE = 2; //底部选择框
-
-
-    public interface OnYuanClickListener {
-        void onClick(SpeedDialog dialog);
-    }
+    public static final int BOTTOM_SELECT_TYPE = 3; //底部选择框
 
 
     public SpeedDialog(@NonNull Context context) {
@@ -89,23 +91,22 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
             setContentView(parentPanel);
             mNormalPanel = parentPanel.findViewById(R.id.normalPanel);
             mProgressPanel = parentPanel.findViewById(R.id.progressPanel);
+            mInputPanel = parentPanel.findViewById(R.id.inputPanel);
             mTitleTv = parentPanel.findViewById(R.id.dialogTitleTv);        //标题
             mMessageTv = parentPanel.findViewById(R.id.dialogMessageTv);    //内容
             mCancelBtn = parentPanel.findViewById(R.id.dialogCancelBtn);    //取消
+            mCancelLine = parentPanel.findViewById(R.id.cancelLine);
             mSureBtn = parentPanel.findViewById(R.id.dialogSureBtn);    //确定
             mProgressBar = parentPanel.findViewById(R.id.progressBar);//加载框
             mProgressTv = parentPanel.findViewById(R.id.progressTv);//加载文字
+            mInputEdit = parentPanel.findViewById(R.id.inputEdit);
 
             mCancelBtn.setOnClickListener(this);
             mSureBtn.setOnClickListener(this);
 
-            setTitle(mTitleText);
-            setMessage(mMessageText);
-            setCancelText(mCancelText);
-            setSureText(mSureText);
-            setProgressText(mProgressText);
-            setSureTextColor(mSureTextColor);
-            setProgressColor(mProgressColor);
+            setupText();
+            setupColor();
+            setupShow();
             showByDialogType(mDialogType);
         }
 
@@ -121,7 +122,13 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
                 break;
             case R.id.dialogSureBtn:
                 cancel();
-                if (mSureClickListener != null) mSureClickListener.onClick(this);
+                if (mDialogType == INPUT_TYPE) {
+                    if (mInputDialogSureClickListener != null)
+                        mInputDialogSureClickListener.onClick(this, mInputEdit.getText().toString());
+                } else {
+                    if (mSureClickListener != null) mSureClickListener.onClick(this);
+                }
+
                 break;
             default:
                 break;
@@ -140,6 +147,12 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
             dialogWindow.setGravity(Gravity.BOTTOM); //设置位置
             dialogWindow.setWindowAnimations(R.style.bottom_menu_animation);//设置动画
             dialogWindow.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        } else if (mDialogType == INPUT_TYPE) {//输出框
+            if (mTitleText == null) {
+                mTitleTv.setVisibility(View.GONE);
+            } else if (mMessageText == null) {
+                mMessageTv.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -156,7 +169,17 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
     public SpeedDialog setMessage(String text) {
         mMessageText = text;
         if (mMessageTv != null && mMessageText != null) {
+            showMessage(true);
             mMessageTv.setText(mMessageText);
+        }
+        return this;
+    }
+
+    //设置消息框可不可以隐藏
+    public SpeedDialog showMessage(boolean showMessage) {
+        mShowMessage = showMessage;
+        if (mMessageTv != null) {
+            mMessageTv.setVisibility(mShowMessage ? View.VISIBLE : View.GONE);
         }
         return this;
     }
@@ -165,7 +188,17 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
     public SpeedDialog setCancelText(String cancel) {
         mCancelText = cancel;
         if (mCancelText != null && mCancelBtn != null) {
+            showCancelButton(true);
             mCancelBtn.setText(mCancelText);
+        }
+        return this;
+    }
+
+    public SpeedDialog showCancelButton(boolean showCancelBtn) {
+        mShowCancelBtn = showCancelBtn;
+        if (mCancelBtn != null) {
+            mCancelBtn.setVisibility(mShowCancelBtn ? View.VISIBLE : View.GONE);
+            mCancelLine.setVisibility(mShowCancelBtn ? View.VISIBLE : View.GONE);
         }
         return this;
     }
@@ -197,6 +230,7 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
         return this;
     }
 
+    //设置进度框的文字
     public SpeedDialog setProgressText(String text) {
         mProgressText = text;
         if (mProgressText != null && mProgressTv != null) {
@@ -206,14 +240,20 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
     }
 
     //设置确定按钮监听器
-    public SpeedDialog setSureClickListener(OnYuanClickListener sureClickListener) {
+    public SpeedDialog setSureClickListener(OnSelectClickListener sureClickListener) {
         mSureClickListener = sureClickListener;
         return this;
     }
 
     //设置取消按钮监听器
-    public SpeedDialog setCancelClickListener(OnYuanClickListener cancelClickListener) {
+    public SpeedDialog setCancelClickListener(OnSelectClickListener cancelClickListener) {
         mCancelClickListener = cancelClickListener;
+        return this;
+    }
+
+    //设置输入框确定按钮监听器
+    public SpeedDialog setInputDialogSureClickListener(OnInputDialogButtonClickListener inputDialogSureClickListener) {
+        mInputDialogSureClickListener = inputDialogSureClickListener;
         return this;
     }
 
@@ -221,16 +261,34 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
         switch (dialogType) {
             case NORMAL_TYPE:
                 mNormalPanel.setVisibility(View.VISIBLE);
+                mInputPanel.setVisibility(View.GONE);
                 mProgressPanel.setVisibility(View.GONE);
                 break;
             case PROGRESS_TYPE:
                 mNormalPanel.setVisibility(View.GONE);
                 mProgressPanel.setVisibility(View.VISIBLE);
                 break;
+            case INPUT_TYPE:
+                mInputPanel.setVisibility(View.VISIBLE);
             default:
                 break;
         }
     }
 
+    private void setupText() {
+        setTitle(mTitleText);
+        setMessage(mMessageText);
+        setCancelText(mCancelText);
+        setSureText(mSureText);
+        setProgressText(mProgressText);
+    }
 
+    private void setupColor() {
+        setSureTextColor(mSureTextColor);
+        setProgressColor(mProgressColor);
+    }
+
+    private void setupShow() {
+        showMessage(mShowMessage);
+    }
 }

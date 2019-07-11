@@ -36,11 +36,13 @@
 
         <LinearLayout
             android:id="@+id/inputPanel"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <EditText
+                android:id="@+id/inputEdit"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
@@ -51,6 +53,7 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:singleLine="true"
+                android:textCursorDrawable="@null"
                 android:hint="输入文本"
                 android:textColor="@color/black"
                 android:textSize="@dimen/sp_14"/>
@@ -80,6 +83,7 @@
                 android:textSize="@dimen/sp_16" />
 
             <View
+                android:id="@+id/cancelLine"
                 android:layout_width="0.5dp"
                 android:layout_height="match_parent"
                 android:background="@color/gray" />

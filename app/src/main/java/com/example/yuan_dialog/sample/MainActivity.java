@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.yuan_dialog.R;
 import com.example.yuan_dialog.dialog.SpeedDialog;
+import com.example.yuan_dialog.listener.OnInputDialogButtonClickListener;
 
 public class MainActivity extends AppCompatActivity {
     AlertDialog dialog = null;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.dialogCancelBottomBtn).setOnClickListener(view -> showBottomDialog());
         findViewById(R.id.dialogCancelCenterBtn).setOnClickListener(view -> showCenterCancelDialog());
         findViewById(R.id.dialogProgressBtn).setOnClickListener(view -> showProgress());
+        findViewById(R.id.dialogInputBtn).setOnClickListener(view -> showInputDialog());
     }
     private void showDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -54,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
     private void showCenterCancelDialog(){
         SpeedDialog normalDialog = new SpeedDialog(this);
         normalDialog.setTitle("删除？")
-                .setMessage("你是否要删除所有的历史记录？")
                 .setSureText("删除")
+                .setMessage("是否删除所有历史记录")
                 .setSureClickListener(dialog1 -> Toast.makeText(this,"删除",Toast.LENGTH_SHORT).show())
                 .show();
     }
@@ -64,6 +67,19 @@ public class MainActivity extends AppCompatActivity {
         SpeedDialog progressDialog = new SpeedDialog(this, SpeedDialog.PROGRESS_TYPE);
         progressDialog.setProgressColor(ContextCompat.getColor(this,R.color.colorPrimary))
                 .setProgressText("正在加载...")
+                .show();
+    }
+
+    private void showInputDialog(){
+        SpeedDialog inputDialog = new SpeedDialog(this,SpeedDialog.INPUT_TYPE);
+        inputDialog.setTitle("登录")
+                .setSureText("确定")
+                .setInputDialogSureClickListener(new OnInputDialogButtonClickListener() {
+                    @Override
+                    public void onClick(Dialog dialog, String inputText) {
+                        Toast.makeText(MainActivity.this,inputText,Toast.LENGTH_SHORT).show();
+                    }
+                })
                 .show();
     }
 
