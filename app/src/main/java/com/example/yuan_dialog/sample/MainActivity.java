@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.dialogCancelCenterBtn).setOnClickListener(view -> showCenterCancelDialog());
         findViewById(R.id.dialogProgressBtn).setOnClickListener(view -> showProgress());
         findViewById(R.id.dialogInputBtn).setOnClickListener(view -> showInputDialog());
+        findViewById(R.id.dialogMessageBtn).setOnClickListener(view -> showMessageDialog());
     }
     private void showDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -82,6 +83,11 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .show();
     }
-
+    private void showMessageDialog(){
+        SpeedDialog messageDialog = new SpeedDialog(this,SpeedDialog.MESSAGE_TYPE);
+        messageDialog.setTitle("消息提示框")
+                .setMessage("用于提示一些消息")
+                .show();
+    }
 
 }

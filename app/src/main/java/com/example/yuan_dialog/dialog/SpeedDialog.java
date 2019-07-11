@@ -59,14 +59,15 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
     private boolean mShowMessage;
     private boolean mShowCancelBtn = true;
 
-    public static final int NORMAL_TYPE = 0; //正常中间确认框
+    public static final int SELECT_TYPE = 0; //选择框
     public static final int PROGRESS_TYPE = 1;//加载框
     public static final int INPUT_TYPE = 2; //输入框
-    public static final int BOTTOM_SELECT_TYPE = 3; //底部选择框
+    public static final int MESSAGE_TYPE=3; //消息提示框
+    public static final int BOTTOM_SELECT_TYPE = 4; //底部选择框
 
 
     public SpeedDialog(@NonNull Context context) {
-        this(context, NORMAL_TYPE);
+        this(context, SELECT_TYPE);
     }
 
     public SpeedDialog(Context context, int dialogType) {
@@ -153,6 +154,9 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
             } else if (mMessageText == null) {
                 mMessageTv.setVisibility(View.GONE);
             }
+        }else if(mDialogType == MESSAGE_TYPE){
+            showCancelButton(false);
+            setSureText("知道了");
         }
     }
 
@@ -259,7 +263,7 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
 
     private void showByDialogType(int dialogType) {
         switch (dialogType) {
-            case NORMAL_TYPE:
+            case SELECT_TYPE:
                 mNormalPanel.setVisibility(View.VISIBLE);
                 mInputPanel.setVisibility(View.GONE);
                 mProgressPanel.setVisibility(View.GONE);
@@ -290,5 +294,6 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
 
     private void setupShow() {
         showMessage(mShowMessage);
+        showCancelButton(mShowCancelBtn);
     }
 }

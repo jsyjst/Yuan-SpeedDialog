@@ -40,5 +40,11 @@
         android:layout_height="wrap_content"
         android:text="输入框"
         />
+    <Button
+        android:id="@+id/dialogMessageBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="消息提示框"
+        />
 
 </LinearLayout>
