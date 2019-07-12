@@ -5,9 +5,9 @@
 方便快捷的弹窗，目前有选择对话框、消息对话框、输入对话框、等待提示框、底部选择框等样式的Dialog，样式预览图如下：
 
 <div align="left">
-<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/select.jpg" height="500" width="150" >
-<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/message.jpg" height="500" width="150" >
-<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/input.jpg" height="500" width="150" >
+<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/select.jpg" height="500" width="200" >
+<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/message.jpg" height="500" width="200" >
+<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/input.jpg" height="500" width="200" >
 </div>
 
 
