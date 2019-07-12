@@ -5,15 +5,15 @@
 方便快捷的弹窗，目前有选择对话框、消息对话框、输入对话框、等待提示框、底部选择框等样式的Dialog，样式预览图如下：
 
 <div align="left">
-<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/select.jpg" height="500" width="300" >
-<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/message.jpg" height="500" width="300" >
-<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/input.jpg" height="500" width="300" >
+<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/select.jpg" height="450" width="270" >
+<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/message.jpg" height="450" width="270" >
+<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/input.jpg" height="450" width="270" >
 </div>
 
 
 <div align="left">
-<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/wait.jpg" height="500" width="300" >
-<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/bottom_select.jpg" height="500" width="300" >
+<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/wait.jpg" height="450" width="270" >
+<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/bottom_select.jpg" height="450" width="270" >
 </div>
 
 
