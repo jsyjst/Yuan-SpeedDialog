@@ -80,7 +80,10 @@
                 android:gravity="center"
                 android:text="@string/cancel_text"
                 android:textColor="@color/black"
-                android:textSize="@dimen/sp_16" />
+                android:textSize="@dimen/sp_16"
+                android:background="@drawable/selector_button_pressed_left"
+                android:clickable="true"
+                android:focusable="true"/>
 
             <View
                 android:id="@+id/cancelLine"
@@ -94,6 +97,9 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:background="@drawable/selector_button_pressed_right"
+                android:clickable="true"
+                android:focusable="true"
                 android:gravity="center"
                 android:text="@string/normal_sure_text"
                 android:textColor="@color/colorPrimaryDark"

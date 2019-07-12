@@ -17,7 +17,7 @@
         android:id="@+id/dialogCancelBottomBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="自定义底部确认框"
+        android:text="底部选择框"
         />
 
 
@@ -25,7 +25,7 @@
         android:id="@+id/dialogCancelCenterBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="自定义中部确认框"
+        android:text="选择框"
         />
     <Button
         android:id="@+id/dialogProgressBtn"

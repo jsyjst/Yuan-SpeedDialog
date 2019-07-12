@@ -27,6 +27,9 @@
         android:text="@string/cancel_text"
         android:gravity="center"
         android:textSize="16sp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/black"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/selector_button_pressed_rect"/>
 
 </LinearLayout>

@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -181,6 +182,7 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
             }
         }else if(mDialogType == MESSAGE_TYPE){
             showCancelButton(false);
+            mSureBtn.setBackgroundResource(R.drawable.selector_button_pressed);
             setSureText("知道了");
         }
     }
