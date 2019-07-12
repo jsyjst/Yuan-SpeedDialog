@@ -1,6 +1,5 @@
 # Yuan-SpeedDialog
 
-[![](https://jitpack.io/v/jsyjst/Yutil.svg)](https://jitpack.io/#jsyjst/Yutil)
 [![](https://img.shields.io/badge/作者-jsyjst-blue.svg)](https://blog.csdn.net/qq_41979349)
 
 方便快捷的弹窗，目前有选择对话框、消息对话框、输入对话框、等待提示框、底部选择框等样式的Dialog
@@ -105,3 +104,19 @@ SpeedDialog.BOTTOM_SELECT_TYPE|底部选择框
                 })
                 .show();
 ```
+# 相关方法
+方法|含义
+setTitle|设置标题
+setMessage|设置内容
+showMessage|是否显示内容
+setCancelText|设置取消的文字
+showCancelButton|是否显示取消的按钮
+setSureText|设置确定按钮的文字
+setSureTextColor|设置确定按钮的颜色
+setProgressColor|设置等待进度条的颜色
+setProgressText|设置等待提示框的文字
+setMenuNameList|设置底部选择框的列表
+setSureClickListener|设置确定的回调
+setCancelClickListener|设置取消的回调
+setInputDialogSureClickListener|设置输入提示框确定的回调
+setMenuItemClickListener|设置底部选择框子项的回调
