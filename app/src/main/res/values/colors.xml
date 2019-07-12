@@ -8,4 +8,5 @@
     <color name="gray">#9E9E9E</color>
     <color name="bottom_line">#E0E0E0</color>
     <color name="black">#000</color>
+    <color name="edit_line">#616161</color>
 </resources>

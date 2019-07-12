@@ -3,6 +3,7 @@ package com.example.yuan_dialog.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +15,18 @@ import android.widget.TextView;
 
 
 import com.example.yuan_dialog.R;
+import com.example.yuan_dialog.adapter.BottomDialogAdapter;
 import com.example.yuan_dialog.listener.OnInputDialogButtonClickListener;
+import com.example.yuan_dialog.listener.OnMenuItemClickListener;
 import com.example.yuan_dialog.listener.OnSelectClickListener;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 /**
@@ -44,10 +52,15 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
     private TextView mMessageTv; //内容
     private TextView mSureBtn; //确定框
     private TextView mCancelBtn;//取消框
-    private ProgressWheel mProgressBar;//加载框
+    private TextView mBottomCancelBtn;
     private TextView mProgressTv;//加载描述
+    private ProgressWheel mProgressBar;//加载框
     private EditText mInputEdit;//输入框
+    private RecyclerView mBottomRecyclerView;
+    private BottomDialogAdapter mBottomDialogAdapter;
+    private LinearLayoutManager mLinearLayoutManager;
     private View mCancelLine;
+    private View mBottomCancelLine;
     private String mTitleText;
     private String mMessageText;
     private String mCancelText;
@@ -58,11 +71,12 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
     private int mProgressColor;
     private boolean mShowMessage;
     private boolean mShowCancelBtn = true;
+    private List<String> mMenuNameList;
 
     public static final int SELECT_TYPE = 0; //选择框
     public static final int PROGRESS_TYPE = 1;//加载框
     public static final int INPUT_TYPE = 2; //输入框
-    public static final int MESSAGE_TYPE=3; //消息提示框
+    public static final int MESSAGE_TYPE= 3; //消息提示框
     public static final int BOTTOM_SELECT_TYPE = 4; //底部选择框
 
 
@@ -86,7 +100,18 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (mDialogType == BOTTOM_SELECT_TYPE) {
-            setContentView(R.layout.dialog_bottom);
+            View parentPanel = LayoutInflater.from(getContext()).inflate(R.layout.dialog_bottom,null);
+            setContentView(parentPanel);
+            mBottomRecyclerView = parentPanel.findViewById(R.id.recycler);
+            mBottomCancelBtn = parentPanel.findViewById(R.id.cancelBtn);
+            mBottomCancelLine = parentPanel.findViewById(R.id.bottomCancelLine);
+            mLinearLayoutManager = new LinearLayoutManager(getContext());
+            mBottomRecyclerView.setLayoutManager(mLinearLayoutManager);
+
+            mBottomCancelBtn.setOnClickListener(this);
+
+            setMenuNameList(mMenuNameList);
+            showCancelButton(mShowCancelBtn);
         } else {
             View parentPanel = LayoutInflater.from(getContext()).inflate(R.layout.dialog_center, null);
             setContentView(parentPanel);
@@ -118,6 +143,7 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.dialogCancelBtn:
+            case R.id.dialogCancelBottomBtn:
                 cancel();
                 if (mCancelClickListener != null) mCancelClickListener.onClick(this);
                 break;
@@ -129,7 +155,6 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
                 } else {
                     if (mSureClickListener != null) mSureClickListener.onClick(this);
                 }
-
                 break;
             default:
                 break;
@@ -198,11 +223,19 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
         return this;
     }
 
+    //根据底部和中部做不同的处理
     public SpeedDialog showCancelButton(boolean showCancelBtn) {
         mShowCancelBtn = showCancelBtn;
-        if (mCancelBtn != null) {
-            mCancelBtn.setVisibility(mShowCancelBtn ? View.VISIBLE : View.GONE);
-            mCancelLine.setVisibility(mShowCancelBtn ? View.VISIBLE : View.GONE);
+        if(mDialogType == BOTTOM_SELECT_TYPE){
+            if(mBottomCancelBtn != null){
+                mBottomCancelBtn.setVisibility(mShowCancelBtn ? View.VISIBLE : View.GONE);
+                mBottomCancelLine.setVisibility(mShowCancelBtn ? View.VISIBLE : View.GONE);
+            }
+        }else {
+            if (mCancelBtn != null) {
+                mCancelBtn.setVisibility(mShowCancelBtn ? View.VISIBLE : View.GONE);
+                mCancelLine.setVisibility(mShowCancelBtn ? View.VISIBLE : View.GONE);
+            }
         }
         return this;
     }
@@ -258,6 +291,21 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
     //设置输入框确定按钮监听器
     public SpeedDialog setInputDialogSureClickListener(OnInputDialogButtonClickListener inputDialogSureClickListener) {
         mInputDialogSureClickListener = inputDialogSureClickListener;
+        return this;
+    }
+
+    public SpeedDialog setMenuItemClickListener(OnMenuItemClickListener menuItemClickListener){
+        if(mMenuNameList != null) mBottomDialogAdapter = new BottomDialogAdapter(mMenuNameList);
+        mBottomDialogAdapter.setMenuItemClickListener(menuItemClickListener,this);
+        return this;
+    }
+
+    public SpeedDialog setMenuNameList(List<String> menuNameList){
+        mMenuNameList = menuNameList;
+        if(mMenuNameList != null && mBottomRecyclerView !=null){
+            if(mBottomDialogAdapter==null)mBottomDialogAdapter = new BottomDialogAdapter(mMenuNameList);
+            mBottomRecyclerView.setAdapter(mBottomDialogAdapter);
+        }
         return this;
     }
 

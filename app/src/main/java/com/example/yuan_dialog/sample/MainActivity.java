@@ -13,6 +13,10 @@ import android.widget.Toast;
 import com.example.yuan_dialog.R;
 import com.example.yuan_dialog.dialog.SpeedDialog;
 import com.example.yuan_dialog.listener.OnInputDialogButtonClickListener;
+import com.example.yuan_dialog.listener.OnMenuItemClickListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     AlertDialog dialog = null;
@@ -51,8 +55,18 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
     private void showBottomDialog(){
+        List<String> menuList = new ArrayList<>();
+        menuList.add("拍照");
+        menuList.add("从相册选取");
         SpeedDialog bottomDialog = new SpeedDialog(this, SpeedDialog.BOTTOM_SELECT_TYPE);
-        bottomDialog.show();
+        bottomDialog.setMenuNameList(menuList)
+                .setMenuItemClickListener(new OnMenuItemClickListener() {
+                    @Override
+                    public void onClick(Dialog dialog,int position) {
+                        Toast.makeText(MainActivity.this,menuList.get(position),Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .show();
     }
 
     private void showCenterCancelDialog(){
