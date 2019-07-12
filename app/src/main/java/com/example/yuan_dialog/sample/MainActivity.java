@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.SpeedDialog.dialog.SpeedDialog;
 import com.example.SpeedDialog.listener.OnInputDialogButtonClickListener;
 import com.example.SpeedDialog.listener.OnMenuItemClickListener;
+import com.example.SpeedDialog.listener.OnSelectClickListener;
 import com.example.yuan_dialog.R;
 
 
@@ -73,12 +74,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showCenterCancelDialog(){
-        SpeedDialog normalDialog = new SpeedDialog(this);
-        normalDialog.setTitle("删除？")
+        SpeedDialog selectDialog = new SpeedDialog(this);
+        selectDialog.setTitle("删除？")
                 .setSureText("删除")
                 .setMessage("是否删除所有历史记录")
-                .setSureClickListener(dialog1 -> Toast.makeText(this,"删除",Toast.LENGTH_SHORT).show())
-                .show();
+                .setSureClickListener(new OnSelectClickListener() {
+                    @Override
+                    public void onClick(Dialog dialog) {
+                        Toast.makeText(MainActivity.this,"删除",Toast.LENGTH_SHORT).show();
+                    }
+                }).show();
     }
 
     private void showProgress(){
@@ -90,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showInputDialog(){
         SpeedDialog inputDialog = new SpeedDialog(this,SpeedDialog.INPUT_TYPE);
-        inputDialog.setTitle("登录")
+        inputDialog.setTitle("更换昵称")
                 .setSureText("确定")
                 .setInputDialogSureClickListener(new OnInputDialogButtonClickListener() {
                     @Override
