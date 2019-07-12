@@ -6,14 +6,14 @@
 
 <div align="left">
 <img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/select.jpg" height="500" width="150" >
-<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/message.jpg" height="500" width="150" >
-<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/input.jpg" height="500" width="150" >
+<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/message.jpg" height="500" width="150" >
+<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/input.jpg" height="500" width="150" >
 </div>
 
 
 <div align="left">
-<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/wait.jpg" height="500" width="150" >
-<img src="https://github.com/jsyjst/Yuan-wanAndroid/raw/master/screenshots/bottom_select.jpg" height="500" width="150" >
+<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/wait.jpg" height="500" width="150" >
+<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/bottom_select.jpg" height="500" width="150" >
 </div>
 
 
