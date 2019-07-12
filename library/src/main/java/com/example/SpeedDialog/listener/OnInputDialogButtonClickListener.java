@@ -1,4 +1,4 @@
-package com.example.yuan_dialog.listener;
+package com.example.SpeedDialog.listener;
 
 import android.app.Dialog;
 
@@ -11,5 +11,5 @@ import android.app.Dialog;
  */
 
 public interface OnInputDialogButtonClickListener {
-    void onClick(Dialog dialog,String inputText);
+    void onClick(Dialog dialog, String inputText);
 }

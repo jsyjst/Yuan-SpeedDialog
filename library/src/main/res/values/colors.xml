@@ -4,4 +4,9 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
+    <color name="white">#fff</color>
+    <color name="gray">#9E9E9E</color>
+    <color name="bottom_line">#EEEEEE</color>
+    <color name="black">#000</color>
+    <color name="edit_line">#616161</color>
 </resources>

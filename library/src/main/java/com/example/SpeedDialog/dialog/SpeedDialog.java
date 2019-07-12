@@ -1,9 +1,8 @@
-package com.example.yuan_dialog.dialog;
+package com.example.SpeedDialog.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,18 +13,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
-import com.example.yuan_dialog.R;
-import com.example.yuan_dialog.adapter.BottomDialogAdapter;
-import com.example.yuan_dialog.listener.OnInputDialogButtonClickListener;
-import com.example.yuan_dialog.listener.OnMenuItemClickListener;
-import com.example.yuan_dialog.listener.OnSelectClickListener;
+import com.example.SpeedDialog.R;
+import com.example.SpeedDialog.adapter.BottomDialogAdapter;
+import com.example.SpeedDialog.listener.OnInputDialogButtonClickListener;
+import com.example.SpeedDialog.listener.OnMenuItemClickListener;
+import com.example.SpeedDialog.listener.OnSelectClickListener;
 import com.pnikosis.materialishprogress.ProgressWheel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -142,23 +139,21 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.dialogCancelBtn:
-            case R.id.dialogCancelBottomBtn:
-                cancel();
-                if (mCancelClickListener != null) mCancelClickListener.onClick(this);
-                break;
-            case R.id.dialogSureBtn:
-                cancel();
-                if (mDialogType == INPUT_TYPE) {
-                    if (mInputDialogSureClickListener != null)
-                        mInputDialogSureClickListener.onClick(this, mInputEdit.getText().toString());
-                } else {
-                    if (mSureClickListener != null) mSureClickListener.onClick(this);
-                }
-                break;
-            default:
-                break;
+        int i = v.getId();
+        if (i == R.id.dialogCancelBtn || i == R.id.cancelBtn) {
+            cancel();
+            if (mCancelClickListener != null) mCancelClickListener.onClick(this);
+
+        } else if (i == R.id.dialogSureBtn) {
+            cancel();
+            if (mDialogType == INPUT_TYPE) {
+                if (mInputDialogSureClickListener != null)
+                    mInputDialogSureClickListener.onClick(this, mInputEdit.getText().toString());
+            } else {
+                if (mSureClickListener != null) mSureClickListener.onClick(this);
+            }
+
+        } else {
         }
     }
 

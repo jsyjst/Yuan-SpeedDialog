@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Yuan-Dialog</string>
+
+    <string name="cancel_text">取消</string>
+    <string name="normal_sure_text">确定</string>
+    <string name="progress_text">Loading</string>
+</resources>

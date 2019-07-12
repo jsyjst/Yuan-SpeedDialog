@@ -1,4 +1,4 @@
-package com.example.yuan_dialog.listener;
+package com.example.SpeedDialog.listener;
 
 import android.app.Dialog;
 
@@ -11,5 +11,5 @@ import android.app.Dialog;
  */
 
 public interface OnMenuItemClickListener {
-    void onClick(Dialog dialog,int position);
+    void onClick(Dialog dialog, int position);
 }

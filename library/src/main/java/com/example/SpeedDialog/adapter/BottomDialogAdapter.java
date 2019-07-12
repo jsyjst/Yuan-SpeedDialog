@@ -1,15 +1,14 @@
-package com.example.yuan_dialog.adapter;
+package com.example.SpeedDialog.adapter;
 
 import android.app.Dialog;
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.yuan_dialog.R;
-import com.example.yuan_dialog.listener.OnMenuItemClickListener;
+
+import com.example.SpeedDialog.R;
+import com.example.SpeedDialog.listener.OnMenuItemClickListener;
 
 import java.util.List;
 
@@ -44,13 +43,16 @@ public class BottomDialogAdapter extends RecyclerView.Adapter<BottomDialogAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         String menuName = mMenuNameList.get(i);
         viewHolder.menuTv.setText(menuName);
-        viewHolder.menuItem.setOnClickListener(view1 -> {
-            if(mMenuItemClickListener !=null) {
-                mDialog.cancel();
-                mMenuItemClickListener.onClick(mDialog,i);
+        viewHolder.menuItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mMenuItemClickListener !=null) {
+                    mDialog.cancel();
+                    mMenuItemClickListener.onClick(mDialog,i);
+                }
             }
         });
     }

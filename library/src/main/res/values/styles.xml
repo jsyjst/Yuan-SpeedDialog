@@ -1,0 +1,19 @@
+<resources>
+
+
+
+    <style name="MyDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item>  <!-- 没有标题-->
+        <item name="android:windowBackground">@android:color/transparent</item>   <!-- 背景颜色 -->
+        <item name="android:windowFrame">@null</item>   <!-- 没有边框 -->
+        <item name="android:windowIsFloating">true</item>   <!-- 窗口浮动 -->
+        <item name="android:windowContentOverlay">@null</item>  <!-- 没有阴影 -->
+    </style>
+
+    <!-- dialog底部弹出动画 -->
+    <style name="bottom_menu_animation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/bottom_menu_enter</item>
+        <item name="android:windowExitAnimation">@anim/bottom_menu_exit</item>
+    </style>
+
+</resources>
