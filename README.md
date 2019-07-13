@@ -35,10 +35,15 @@ allprojects {
 }
 ```
 #### 2.在Module目录下的build.gradle中添加依赖
+1. Androidx版本
 ```
-implementation 'com.github.jsyjst:Yuan-SpeedDialog:v1.0.0'
+implementation 'com.github.jsyjst:Yuan-SpeedDialog:Androidx-1.0.0'
 ```
-##### 示例：
+2. Support版本
+```
+implementation 'com.github.jsyjst:Yuan-SpeedDialog:support-1.0.0'
+```
+##### 示例(Androidx版本)：
 ```
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -48,7 +53,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
 
-    implementation 'com.github.jsyjst:Yuan-SpeedDialog:v1.0.0'
+    implementation 'com.github.jsyjst:Yuan-SpeedDialog:Androidx-1.0.0'
 }
 ```
 # 使用方法
@@ -104,6 +109,7 @@ SpeedDialog.BOTTOM_SELECT_TYPE|底部选择框
 ```
 
 ### 底部选择框
+底部选择框必须调用setMenuNameList方法设置底部选择列表
 ```java
         List<String> menuList = new ArrayList<>();
         menuList.add("拍照");
