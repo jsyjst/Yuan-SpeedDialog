@@ -153,7 +153,6 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
                 if (mSureClickListener != null) mSureClickListener.onClick(this);
             }
 
-        } else {
         }
     }
 
@@ -169,13 +168,7 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
             dialogWindow.setGravity(Gravity.BOTTOM); //设置位置
             dialogWindow.setWindowAnimations(R.style.bottom_menu_animation);//设置动画
             dialogWindow.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        } else if (mDialogType == INPUT_TYPE) {//输出框
-            if (mTitleText == null) {
-                mTitleTv.setVisibility(View.GONE);
-            } else if (mMessageText == null) {
-                mMessageTv.setVisibility(View.GONE);
-            }
-        }else if(mDialogType == MESSAGE_TYPE){
+        } else if(mDialogType == MESSAGE_TYPE){
             showCancelButton(false);
             mSureBtn.setBackgroundResource(R.drawable.selector_button_pressed);
             setSureText("知道了");

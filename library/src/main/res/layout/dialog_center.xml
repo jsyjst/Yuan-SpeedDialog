@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:gravity="center"
+            android:text="@string/title"
             android:textColor="@android:color/primary_text_light"
             android:textSize="@dimen/sp_20"
             />
@@ -123,6 +124,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
+            wheel:matProg_barColor="@color/colorPrimary"
             wheel:matProg_progressIndeterminate="true" />
 
         <TextView

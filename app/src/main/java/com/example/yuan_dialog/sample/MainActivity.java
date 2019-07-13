@@ -1,13 +1,8 @@
 package com.example.yuan_dialog.sample;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.SpeedDialog.dialog.SpeedDialog;
@@ -16,11 +11,12 @@ import com.example.SpeedDialog.listener.OnMenuItemClickListener;
 import com.example.SpeedDialog.listener.OnSelectClickListener;
 import com.example.yuan_dialog.R;
 
-
-
-
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 public class MainActivity extends AppCompatActivity {
     AlertDialog dialog = null;
@@ -28,11 +24,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button dialogBtn = findViewById(R.id.dialogBtn);
-        dialogBtn.setOnClickListener(view->showDialog());
+        findViewById(R.id.dialogBtn).setOnClickListener(view->showDialog());
         findViewById(R.id.dialogCancelBottomBtn).setOnClickListener(view -> showBottomDialog());
-        findViewById(R.id.dialogCancelCenterBtn).setOnClickListener(view -> showCenterCancelDialog());
-        findViewById(R.id.dialogProgressBtn).setOnClickListener(view -> showProgress());
+        findViewById(R.id.dialogCancelCenterBtn).setOnClickListener(view -> showSelectDiglog());
+        findViewById(R.id.dialogProgressBtn).setOnClickListener(view -> showProgressDialog());
         findViewById(R.id.dialogInputBtn).setOnClickListener(view -> showInputDialog());
         findViewById(R.id.dialogMessageBtn).setOnClickListener(view -> showMessageDialog());
     }
@@ -73,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
-    private void showCenterCancelDialog(){
+    private void showSelectDiglog(){
         SpeedDialog selectDialog = new SpeedDialog(this);
         selectDialog.setTitle("删除？")
                 .setSureText("删除")
@@ -86,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 }).show();
     }
 
-    private void showProgress(){
+    private void showProgressDialog(){
         SpeedDialog progressDialog = new SpeedDialog(this, SpeedDialog.PROGRESS_TYPE);
         progressDialog.setProgressColor(ContextCompat.getColor(this,R.color.colorPrimary))
                 .setProgressText("正在加载...")
