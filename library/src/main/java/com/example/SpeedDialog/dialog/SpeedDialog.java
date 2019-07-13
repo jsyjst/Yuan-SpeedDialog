@@ -3,6 +3,8 @@ package com.example.SpeedDialog.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.InputType;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,6 +69,7 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
     private int mDialogType;
     private int mSureTextColor;
     private int mProgressColor;
+    private int mInputMaxLength;
     private boolean mShowMessage;
     private boolean mShowCancelBtn = true;
     private List<String> mMenuNameList;
@@ -266,6 +269,14 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
         return this;
     }
 
+    public SpeedDialog setInputMaxLength(int maxLength){
+        mInputMaxLength = maxLength;
+        if(mInputEdit != null&&mInputMaxLength != 0){
+            mInputEdit.setFilters(new InputFilter[]{new InputFilter.LengthFilter(mInputMaxLength)});
+        }
+        return this;
+    }
+
     //设置确定按钮监听器
     public SpeedDialog setSureClickListener(OnSelectClickListener sureClickListener) {
         mSureClickListener = sureClickListener;
@@ -323,6 +334,7 @@ public class SpeedDialog extends Dialog implements View.OnClickListener {
         setCancelText(mCancelText);
         setSureText(mSureText);
         setProgressText(mProgressText);
+        setInputMaxLength(mInputMaxLength);
     }
 
     private void setupColor() {
