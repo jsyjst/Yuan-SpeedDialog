@@ -36,7 +36,7 @@ allprojects {
 ```
 #### 2.在Module目录下的build.gradle中添加依赖
 ```
-implementation 'com.github.jsyjst:Yutil:v1.0.1'
+implementation 'com.github.jsyjst:Yuan-SpeedDialog:v1.0.0'
 ```
 ##### 示例：
 ```
@@ -130,6 +130,7 @@ setSureTextColor|设置确定按钮的颜色
 setProgressColor|设置等待进度条的颜色
 setProgressText|设置等待提示框的文字
 setMenuNameList|设置底部选择框的列表
+setInputMaxLength|设置输入的最大长度
 setSureClickListener|设置确定的回调
 setCancelClickListener|设置取消的回调
 setInputDialogSureClickListener|设置输入提示框确定的回调
