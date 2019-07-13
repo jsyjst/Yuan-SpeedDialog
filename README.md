@@ -2,7 +2,20 @@
 
 [![](https://img.shields.io/badge/作者-jsyjst-blue.svg)](https://blog.csdn.net/qq_41979349)
 
-方便快捷的弹窗，目前有选择对话框、消息对话框、输入对话框、等待提示框、底部选择框等样式的Dialog
+方便快捷的弹窗，目前有选择对话框、消息对话框、输入对话框、等待提示框、底部选择框等样式的Dialog，样式预览图如下：
+
+<div align="left">
+<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/select.jpg" height="450" width="270" >
+<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/message.jpg" height="450" width="270" >
+<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/input.jpg" height="450" width="270" >
+</div>
+
+
+<div align="left">
+<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/wait.jpg" height="450" width="270" >
+<img src="https://github.com/jsyjst/Yuan-SpeedDialog/raw/master/screenshots/bottom_select.jpg" height="450" width="270" >
+</div>
+
 
 # 如何添加
 ### Gradle的引用方式
@@ -106,6 +119,7 @@ SpeedDialog.BOTTOM_SELECT_TYPE|底部选择框
 ```
 # 相关方法
 方法|含义
+|-|-|
 setTitle|设置标题
 setMessage|设置内容
 showMessage|是否显示内容
